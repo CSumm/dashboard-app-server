@@ -3,6 +3,7 @@ const app = express();
 const server = require('http').createServer(app);
 const WebSocket = require('ws');
 var CronJob = require('cron').CronJob;
+const port = 3001;
 
 
 const wss = new WebSocket.Server({ server: server });
@@ -41,4 +42,4 @@ job.start();
   });
 
   app.get('/', (req,res) => res.send("hello world"));
-  server.listen(3001, () => console.log("Listening on port :3001"));
+  server.listen(process.env.PORT || port, () => console.log(`Listening on port ${port}`));
