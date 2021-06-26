@@ -11,7 +11,11 @@ const wss = new WebSocket.Server({ server: server });
 wss.on('connection', function connection(ws) {
     ws.on('message', function incoming(message) {
       console.log('received: %s', message);
-    });  
+    });
+    
+    ws.on('error', function error(exceptio){
+     return 'An error has occurred';   
+    }
 
     var job = new CronJob('*/1 * * * *', function() {
       let min = 25;
